@@ -1,13 +1,6 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_ENTER_ANALYTICS_ENABLED?: string;
-  readonly VITE_ENTER_ANALYTICS_TOKEN?: string;
-  readonly VITE_ENTER_PROJECT_ID?: string;
-  readonly VITE_ENTER_ANALYTICS_ENDPOINT?: string;
-  readonly VITE_ENTER_ANALYTICS_DEFINITIONS_ENDPOINT?: string;
-  readonly VITE_ENTER_ANALYTICS_DEBUG?: string;
-
   /** Blizzard namespace, e.g. `static-classic-us` (WoW Forever later). */
   readonly VITE_BLIZZARD_NAMESPACE?: string;
   /** Blizzard region, e.g. `us` / `eu`. */

@@ -1,153 +1,134 @@
 # WayfinderCodex
 
-[![Built with enter.pro](https://img.shields.io/badge/Build%20with-Enter.pro-FC5776?style=for-the-badge&labelColor=1F1F1F)](https://enter.pro)
+WayfinderCodex is a fan-made leveling guide for **WoW Classic / Vanilla ("WoW Forever")**. It covers dungeons and quest chains, faction, race, and class recommendations, Hunter pets, and a complete professions guide from 1 to 300.
 
-Códice de leveling para **WoW Classic / Vanilla ("WoW Forever")**: dungeons e cadeias de quest, recomendações por facção/raça/classe, pets de Hunter e guia completo de profissões (2 primárias + 3 secundárias, de 1 a 300).
+> Fan project, unaffiliated with Blizzard Entertainment. World of Warcraft, WoW Classic, and related names and items are trademarks of Blizzard.
 
-> Projeto de fã, sem afiliação com a Blizzard Entertainment. World of Warcraft, WoW Classic e todos os nomes/itens relacionados são marcas da Blizzard.
+## Features
 
----
+### Main section: `/` (Leveling and Dungeons)
 
-## Funcionalidades
+- **Character profile selector:** Choose faction, race, and class, with class and faction color badges.
+- **Character level:** Set levels 1-60 with a validated number input or slider.
+- **Recommended dungeons:** Filtered dynamically by level range and faction, including faction-exclusive dungeons and wings.
+- **Dungeon quest guides:** Curated quests with NPCs, zones, coordinates, prerequisites, ordered chains, objectives, and rewards.
+- **`/way` coordinates:** Copy TomTom `/way X Y` commands directly from each location.
+- **Hunter pets:** A Hunter-only section with strong pets for the character's level, zones, coordinates, and mechanical notes.
+- **Class quests:** Leveling milestones for stances, forms, demons, totems, poisons, and mounts.
 
-### Sessão principal - `/` (Leveling & Dungeons)
-- **Seletor de perfil**: facção (Alliance/Horde), raça (com as classes realmente disponíveis para cada raça no Classic) e classe, tudo com badges coloridas por cor de classe e de facção.
-- **Nível do personagem** (1-60) com input numérico validado e slider.
-- **Dungeons recomendadas**: filtradas dinamicamente pela faixa de nível e pela facção (incluindo as exclusivas Alliance/Horde e as alas de Scarlet Monastery e Dire Maul).
-- **Guia de quests por dungeon**: lista completa das quests curadas, onde pegar (NPC, zona e coordenadas), pré-requisitos, cadeias em ordem numerada, objetivos e recompensas.
-- **Coordenadas `/way`**: cada localização tem um botão que copia o comando TomTom `/way X Y` para colar no jogo.
-- **Pets de Hunter**: seção dedicada (visível apenas para Hunter) com os melhores pets até o seu nível, zona, coordenadas e o motivo mecânico de cada um.
-- **Quests de classe**: marcos de leveling por classe (stances, formas, demônios, totens, venenos, mounts).
+### Secondary section: `/professions`
 
-### Sessão secundária - `/professions`
-- **Seletor de até 5 profissões**: bloqueia a 3ª primária e a 4ª secundária, espelhando a regra do Classic.
-- **Tabela comparativa**: perícia ideal (5 pontos por nível de personagem) contra o seu nível atual, com a sua linha destacada e o status *adiantado / no ritmo / atrasado*.
-- **Receitas por faixa**: ordem de craft/coleta de 1 a 300, materiais, origem (treinador, vendedor, drop, quest) e notas práticas. Para profissões de coleta, a faixa mostra o material coletado.
-- **Spots de coleta/farm** adequados ao seu nível de personagem.
-- **Guia de economia**: o que vender na Auction House, o que desencantar e o que guardar para receitas avançadas.
-- **Sugestão de pares**: profissões que compartilham materiais (ex.: Mineração + Ferraria, Esfolar + Courovia).
+- **Profession selector:** Select up to five professions while enforcing the Classic primary and secondary profession limits.
+- **Skill comparison:** Compare the ideal skill level, based on five points per character level, with the current skill.
+- **Recipe progression:** Follow crafting and gathering paths from 1 to 300, including materials, sources, and practical notes.
+- **Gathering spots:** Find farming locations appropriate for the character's level.
+- **Economy guide:** Decide what to sell on the Auction House, disenchant, or save for advanced recipes.
+- **Profession pair suggestions:** Find professions that share materials, such as Mining and Blacksmithing or Skinning and Leatherworking.
 
-### Transversal
-- **Wowhead Tooltips** em itens, quests e NPCs, com `refreshLinks()` re-executado a cada mudança de dados na tela.
-- **i18n**: Português (Brasil) como idioma padrão e Inglês, alternável no cabeçalho e persistido no navegador.
-- **Estado persistente**: personagem e profissões salvos em `localStorage`.
-- **Segurança**: nenhum token ou segredo no frontend ou no repositório.
+### Cross-cutting features
 
----
+- **Wowhead tooltips** for items, quests, and NPCs.
+- **Internationalization:** English (US) is the default language. Brazilian Portuguese remains available from the header and is persisted in the browser.
+- **Persistent state:** Character and profession selections are stored in `localStorage`.
+- **Security:** No token or secret is included in the frontend or repository.
 
 ## Stack
 
-React 19 + Vite + TypeScript + Tailwind CSS + shadcn/ui, i18next para i18n, `lucide-react` para ícones e `react-router-dom` para as rotas.
+React 19 + Vite + TypeScript + Tailwind CSS + shadcn/ui, i18next for internationalization, `lucide-react` for icons, and `react-router-dom` for routing.
 
-Todos os pacotes são open-source (MIT/ISC/Apache-2.0); não há dependência paga.
+All packages are open source (MIT, ISC, or Apache-2.0); there are no paid dependencies.
 
----
+## Project Structure
 
-## Estrutura
-
-```
-.github/workflows/deploy.yml     # CI: lint + typecheck + build + deploy GitHub Pages
-docker-compose.yml               # ambiente de desenvolvimento local
-index.html                       # fontes, meta e script do Wowhead Tooltips
-i18n.config.json                 # manifesto de idiomas (pt-BR padrão, en)
-public/locales/{pt-BR,en}.json   # strings da interface
+```text
+.github/workflows/deploy-pages.yml  # GitHub Pages build and deployment
+docker-compose.yml                   # Local development environment
+index.html                           # Metadata, fonts, and Wowhead tooltip script
+i18n.config.json                     # Language manifest (English default, Portuguese available)
+public/locales/{en,pt-BR}.json      # Interface strings
 src/
-  components/
-    Header.tsx, PageShell.tsx    # navegação, seletor de idioma e chrome da página
-    leveling/                    # CharacterForm, pickers, DungeonList, DungeonQuests, QuestChain, HunterPets, ClassTips
-    professions/                 # ProfessionSelect, ProfessionGuide, RecipeTable, GatheringSpots, EconomyGuide
-    wowhead/                     # WowheadLink (tooltips) e CoordCopy (/way)
-    ui/                          # componentes shadcn/ui customizados
-  config/blizzard.config.ts      # namespace/região/locale/proxy (defaults seguros)
-  context/                       # estado global do personagem + provider
-  data/                          # base curada: dungeons, quests, pets, class tips, profissões, facções, raças, classes
-  hooks/                         # use-character, use-lang, use-wowhead-tooltips, use-blizzard-source
-  lib/                           # domínio: leveling, professions, wowhead, localize, labels
-  pages/leveling, pages/professions
-  services/blizzardService.ts    # camada REST isolada (modo híbrido)
-  types/game.ts                  # tipos de domínio
+  components/                         # Shared UI and feature components
+  config/                             # Blizzard API configuration
+  context/                            # Character state and provider
+  data/                               # Curated dungeons, quests, pets, classes, and professions
+  hooks/                              # React hooks
+  i18n/                               # i18next runtime and helpers
+  lib/                                # Domain utilities
+  pages/                              # Route-level pages
+  services/                           # Isolated Blizzard API service
+  types/                              # Domain types
 ```
 
----
+## Local Development
 
-## Execução local
+### pnpm
 
-### Com pnpm
 ```bash
 pnpm install
 pnpm dev        # http://localhost:8080
 pnpm check      # eslint + tsc --noEmit
-pnpm run build:prod
+pnpm build:prod
 pnpm preview
 ```
 
-### Com Docker
+### Docker
+
 ```bash
 docker compose up
-# dev server em http://localhost:8080 com HMR
+# Development server at http://localhost:8080 with HMR
 ```
 
----
+## Environment Variables
 
-## Variáveis de ambiente
+Only public values belong in the repository. Copy `.env.example` to `.env` if you want to override the defaults. The app works without an `.env` file because `src/config/blizzard.config.ts` provides safe Classic defaults.
 
-Apenas valores **públicos** podem ficar no repositório. Copie `.env.example` para `.env` se quiser sobrescrever os defaults (o app funciona sem nenhum `.env`, porque os defaults de `src/config/blizzard.config.ts` já apontam para o Classic).
-
-| Variável | Default | Uso |
+| Variable | Default | Use |
 | --- | --- | --- |
-| `VITE_BLIZZARD_NAMESPACE` | `static-classic-us` | namespace Blizzard; troque para o namespace do WoW Forever quando existir |
-| `VITE_BLIZZARD_REGION` | `us` | região (`us`, `eu`, ...) |
-| `VITE_BLIZZARD_LOCALE` | `en_US` | locale dos dados |
-| `VITE_BLIZZARD_API_BASE` | *(vazio)* | URL de um proxy no servidor que guarda as credenciais Blizzard. Vazio = modo curado, sem nenhuma requisição |
-| `VITE_WOWHEAD_DOMAIN` | `classic` | domínio dos tooltips (`classic`, `tbc`, `wotlk`) |
-| `GH_PAGES_BASE` | `/` | sub-caminho do build no GitHub Pages (definido pelo workflow) |
+| `VITE_BLIZZARD_NAMESPACE` | `static-classic-us` | Blizzard namespace |
+| `VITE_BLIZZARD_REGION` | `us` | Region, such as `us` or `eu` |
+| `VITE_BLIZZARD_LOCALE` | `en_US` | Data locale |
+| `VITE_BLIZZARD_API_BASE` | *(empty)* | URL for a server-side proxy that stores Blizzard credentials |
+| `VITE_WOWHEAD_DOMAIN` | `classic` | Tooltip domain, such as `classic`, `tbc`, or `wotlk` |
+| `GH_PAGES_BASE` | `/` | GitHub Pages project-site base path, set by the deployment workflow |
 
-> **Nunca** coloque `client_secret` da Blizzard (ou qualquer chave privada) no código: um secret no frontend é público. Use um proxy no servidor e configure apenas a URL dele aqui.
+> Never put a Blizzard `client_secret` or another private key in frontend code. Frontend secrets are public. Use a server-side proxy and expose only its URL here.
 
-### Camada Blizzard (modo híbrido)
-`src/services/blizzardService.ts` é a única porta de saída para a API:
+### Blizzard service
 
-- **Sem `VITE_BLIZZARD_API_BASE`** (padrão): todas as chamadas retornam `null` imediatamente, sem requisição de rede. O site é 100% estático e usa os dados curados de `src/data/`.
-- **Com o proxy configurado**: o serviço busca dados ao vivo (realm status, metadados de item/quest/spell) com timeout e cache em memória, e o cabeçalho passa a indicar "Dados ao vivo".
-- Trocar para os namespaces do **WoW Forever** é só mudar as variáveis de ambiente - nenhum código precisa mudar.
+`src/services/blizzardService.ts` is the only outbound API layer:
 
----
+- Without `VITE_BLIZZARD_API_BASE`, calls return `null` immediately and the site uses curated data from `src/data/`.
+- With the proxy configured, the service can fetch live realm, item, quest, and spell data with timeout and in-memory caching.
+- Switching to WoW Forever namespaces only requires changing environment variables.
 
-## i18n
+## Internationalization
 
-- `i18n.config.json` é a única fonte de verdade dos idiomas: **pt-BR** (fallback) e **en**.
-- Strings da interface ficam em `public/locales/{pt-BR,en}.json` com chaves *flat dotted camelCase*; os dois arquivos têm exatamente o mesmo conjunto de chaves.
-- Nomes de jogo (dungeons, quests, NPCs, itens, zonas) permanecem em inglês para manter a consistência com os links/tooltips do Wowhead; os textos descritivos usam `Localized` em `src/data/*` e são resolvidos por `src/lib/localize.ts`.
-- Validação: `node .agents/skills/enter_i18n@1/assets/scripts/check-i18n.mjs` (quando disponível) ou os testes locais do `CodeGuideline.md`.
+- `i18n.config.json` is the single source of truth for supported languages. English (`en`) is the fallback and default language; Portuguese (`pt-BR`) is available as an explicit option.
+- Interface strings live in `public/locales/{en,pt-BR}.json` and both files use the same key set.
+- Game names remain in English for consistency with Wowhead links and tooltips; descriptive data uses localized values resolved by `src/lib/localize.ts`.
 
----
+## GitHub Pages Deployment
 
-## Deploy no GitHub Pages
+1. Push the repository to GitHub on the `main` branch.
+2. In **Settings > Pages**, select **GitHub Actions** as the source if GitHub has not selected it automatically.
+3. The `.github/workflows/deploy-pages.yml` workflow installs dependencies, builds with `GH_PAGES_BASE=/<repository-name>/`, and publishes `dist/`.
+4. `public/404.html` preserves deep links such as `/professions` when hosted on GitHub Pages.
 
-1. Publique o repositório no GitHub (`main`).
-2. Em **Settings → Pages**, escolha **GitHub Actions** como fonte.
-3. O workflow `.github/workflows/deploy.yml` roda `pnpm check`, `pnpm run build:prod` com `GH_PAGES_BASE=/<nome-do-repo>/` e publica `dist/`.
-4. `dist/404.html` é uma cópia de `index.html`, o que faz deep links (`/professions`) funcionarem no Pages.
+## Data Accuracy
 
----
+The data in `src/data/` is curated rather than fetched from an API. It covers Classic dungeons, major dungeon quests, Hunter pets, class milestones, and professions from 1 to 300.
 
-## Acurácia dos dados
+- Entities accept a `wowheadId`. If an ID is unconfirmed, it is intentionally omitted so the link opens a Wowhead search instead of showing an incorrect tooltip.
+- Adding a confirmed `wowheadId` enables the tooltip automatically.
+- Coordinates use Wowhead's 0-100 scale and should be checked on the map before publishing a guide.
+- Recipes and skill ranges follow classic leveling paths; private-server variations may require data adjustments.
 
-A base em `src/data/` é **curada** (não extraída de API) e cobre todas as dungeons Classic, as principais quests de dungeon, pets de Hunter, marcos de classe e as 12 profissões de 1 a 300.
+Contributions are welcome through pull requests to files under `src/data/`.
 
-- Cada entidade aceita `wowheadId`. Quando o id **não** está confirmado, o campo é omitido de propósito e o link abre uma **busca no Wowhead** em vez de mostrar uma tooltip errada.
-- Preencher um `wowheadId` confirmado ativa a tooltip automaticamente - sem mexer em componentes.
-- Coordenadas usam a escala 0-100 do Wowhead e devem ser sempre validadas no mapa antes de divulgar um guia em produção.
-- Receitas e faixas de perícia seguem os caminhos clássicos de leveling; variações de servidor privado podem exigir ajuste no arquivo de dados.
-
-Contribuições são bem-vindas por PR nos arquivos de `src/data/`.
-
----
-
-## Verificação
+## Verification
 
 ```bash
-pnpm check                  # eslint + tsc --noEmit
-pnpm run build:prod         # build de produção (mesmo comando do workflow)
-pnpm dev                    # checagem manual: / e /professions, troca de idioma, filtros
+pnpm check
+pnpm build:prod
+pnpm dev
 ```

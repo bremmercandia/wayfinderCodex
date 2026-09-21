@@ -25,7 +25,7 @@ void i18n
     supportedLngs,
     backend: { loadPath: `${baseUrl}locales/{{lng}}.json` },
     detection: {
-      order: ["cookie", "navigator", "htmlTag"],
+      order: ["cookie"],
       lookupCookie: "i18next",
       caches: ["cookie"],
       // Normalize an unsupported language to fallbackLng so no invalid language

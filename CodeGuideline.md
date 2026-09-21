@@ -28,8 +28,8 @@ project-root/
 ## Directory Responsibilities
 
 - **public/**: Static files served directly. Place images, icons, and robots.txt here.
-- **public/locales/**: Translation files, one per language (`{code}.json`). Flat dotted keys (e.g. `home.hero.title`); the `fallbackLng` file is the structural source of truth.
-- **i18n.config.json**: The lightweight i18n manifest for fallback language, language labels, browser detection aliases, and document direction. Single source of truth for the language list.
+- **public/locales/**: Translation files, one per language (`{code}.json`). Flat dotted keys (e.g. `home.hero.title`); the `fallbackLng` file (`en.json`) is the structural source of truth.
+- **i18n.config.json**: The lightweight i18n manifest for the English default, language labels, browser detection aliases, and document direction. Single source of truth for the language list.
 - **src/components/**: All UI components.  
   - **ui/**: Contains atomic and composite UI components.  
   - *Group related components into subdirectories if they share a domain or feature (e.g., `form/`, `charts/`).*
@@ -88,7 +88,7 @@ Whenever a new module (such as a component, hook, or utility) or a new page is a
 
 ### 5. Adding or Updating Languages
 
-- **Language metadata must go through `i18n.config.json`.**
+- **Language metadata must go through `i18n.config.json`; English (`en`) is the default.**
 - **Do not hardcode supported languages, labels, browser detection aliases, or RTL direction lists in `src/i18n/*.ts`.**
 - **Locale content lives in `public/locales/{code}.json`** as flat dotted-key JSON; the `fallbackLng` file owns the canonical key set.
 - **Runtime code reads the manifest only through `src/i18n/util.ts`.** Adding or removing a language means editing `i18n.config.json` plus the matching `public/locales/{code}.json`; nothing in `src/i18n/` needs to change.
