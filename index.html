@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="/favicon.ico" rel="icon shortcut">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <title>WayfinderCodex — Guia de Leveling WoW Classic</title>
+  <meta name="description"
+    content="WayfinderCodex: guia de leveling para WoW Classic / Vanilla (WoW Forever) com quests de dungeon, recomendações por facção, raça e classe, pets de Hunter e guia completo de profissões." />
+  <meta name="author" content="WayfinderCodex" />
+
+  <meta property="og:title" content="WayfinderCodex — Guia de Leveling WoW Classic" />
+  <meta property="og:description"
+    content="Dungeons, cadeias de quest, pets de Hunter e profissões de 1 a 300 para o lançamento do WoW Classic." />
+  <meta property="og:type" content="website" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    const redirect = sessionStorage.getItem("github-pages-redirect");
+    if (redirect) {
+      sessionStorage.removeItem("github-pages-redirect");
+      history.replaceState(null, "", redirect);
+    }
+  </script>
+  <!-- Wowhead Tooltips: habilita os links interativos de itens, quests e NPCs (domain=classic nos links). -->
+  <script>
+    window.whTooltips = { colorLinks: true, iconizeLinks: false, renameLinks: false };
+  </script>
+  <script src="https://wowhead.com/widgets/power.js" async></script>
+  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      const redirect = `${location.protocol}//${location.host}${location.pathname}${location.search}${location.hash}`;
+      sessionStorage.setItem("github-pages-redirect", redirect);
+      location.replace(`${location.protocol}//${location.host}/wayfinderCodex/`);
+    </script>
+  </head>
+  <body></body>
+</html>

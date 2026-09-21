@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* The app is dark-only: the WoW palette is declared once for both the root and
+     the `dark` class so every shadcn/ui component resolves the same tokens. */
+  :root,
+  .dark {
+    --background: 222 23% 11%;
+    --foreground: 40 25% 88%;
+
+    --card: 222 21% 14%;
+    --card-foreground: 40 25% 88%;
+
+    --popover: 222 23% 12%;
+    --popover-foreground: 40 25% 88%;
+
+    --primary: 43 60% 54%;
+    --primary-foreground: 222 32% 8%;
+
+    --secondary: 222 18% 20%;
+    --secondary-foreground: 40 25% 88%;
+
+    --muted: 222 16% 18%;
+    --muted-foreground: 40 12% 64%;
+
+    --accent: 43 40% 26%;
+    --accent-foreground: 43 72% 84%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 25% 92%;
+
+    --border: 222 18% 22%;
+    --input: 222 18% 24%;
+    --ring: 43 60% 54%;
+
+    --radius: 0.5rem;
+
+    /* WoW semantic tokens */
+    --parchment: 40 32% 84%;
+    --leather: 25 30% 20%;
+
+    --faction-alliance: 215 56% 45%;
+    --faction-horde: 0 58% 45%;
+
+    --rarity-poor: 0 0% 62%;
+    --rarity-common: 0 0% 96%;
+    --rarity-uncommon: 120 100% 50%;
+    --rarity-rare: 212 100% 43%;
+    --rarity-epic: 280 76% 57%;
+    --rarity-legendary: 32 100% 50%;
+
+    --class-warrior: 30 46% 60%;
+    --class-paladin: 330 85% 69%;
+    --class-hunter: 81 52% 64%;
+    --class-rogue: 58 100% 71%;
+    --class-priest: 0 0% 100%;
+    --class-shaman: 210 100% 44%;
+    --class-mage: 195 81% 68%;
+    --class-warlock: 259 44% 65%;
+    --class-druid: 28 100% 52%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(43 64% 60%), hsl(36 56% 36%));
+    --gradient-parchment: linear-gradient(180deg, hsl(40 30% 90%), hsl(38 26% 74%));
+    --gradient-leather: linear-gradient(180deg, hsl(222 23% 14%), hsl(222 27% 9%));
+    --gradient-alliance: linear-gradient(135deg, hsl(215 56% 45%), hsl(215 70% 20%));
+    --gradient-horde: linear-gradient(135deg, hsl(0 58% 45%), hsl(0 62% 20%));
+
+    --shadow-elegant: 0 10px 30px -12px hsl(222 60% 2% / 0.85);
+    --shadow-gold-glow: 0 0 24px hsl(var(--primary) / 0.28);
+    --shadow-ornate: inset 0 1px 0 hsl(var(--primary) / 0.22), 0 18px 40px -24px hsl(0 0% 0% / 0.9);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* sidebar tokens kept aligned with the palette */
+    --sidebar-background: 222 24% 10%;
+    --sidebar-foreground: 40 22% 84%;
+    --sidebar-primary: 43 60% 54%;
+    --sidebar-primary-foreground: 222 32% 8%;
+    --sidebar-accent: 222 18% 18%;
+    --sidebar-accent-foreground: 40 22% 88%;
+    --sidebar-border: 222 18% 22%;
+    --sidebar-ring: 43 60% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at 15% -10%, hsl(var(--primary) / 0.10), transparent 45%),
+      radial-gradient(circle at 92% 4%, hsl(var(--faction-horde) / 0.08), transparent 42%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-wide;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer components {
+  /* Ornament recipes reused across the guide panels. */
+  .ornate-frame {
+    @apply rounded-lg border border-primary/25 bg-gradient-leather shadow-ornate;
+  }
+
+  .gold-text {
+    @apply bg-gradient-gold bg-clip-text text-transparent;
+  }
+
+  .ornate-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent;
+  }
+
+  .parchment-panel {
+    @apply rounded-md border border-primary/20 bg-secondary/60 px-3 py-2 text-sm text-muted-foreground;
+  }
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
