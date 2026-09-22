@@ -30,7 +30,7 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
       <SelectTrigger
         aria-label={t("nav.language")}
         title={t("nav.language")}
-        className={cn("size-10 shrink-0 p-0", className)}
+        className={cn("size-10 shrink-0 justify-center p-0 [&>svg:last-child]:hidden", className)}
       >
         <Globe className="size-4" aria-hidden="true" />
       </SelectTrigger>
