@@ -26,7 +26,7 @@ export const classIcons: Record<string, string> = {
   priest: iconUrl("spell_holy_powerwordshield"),
   shaman: iconUrl("spell_nature_stoneskintotem"),
   mage: iconUrl("spell_frost_frostbolt02"),
-  warlock: iconUrl("spell_shadow_mastersdemon"),
+  warlock: iconUrl("spell_shadow_shadowbolt"),
   druid: iconUrl("ability_druid_catform"),
 };
 
@@ -38,9 +38,9 @@ export const professionIcons: Record<string, string> = {
   herbalism: iconUrl("spell_nature_naturetouchgrow"),
   leatherworking: iconUrl("trade_leatherworking"),
   mining: iconUrl("trade_mining"),
-  skinning: iconUrl("inv_misc_pelt_wolf"),
+  skinning: iconUrl("inv_misc_pelt_wolf_03"),
   tailoring: iconUrl("trade_tailoring"),
   cooking: iconUrl("inv_misc_food_15"),
   fishing: iconUrl("trade_fishing"),
-  firstAid: iconUrl("spell_holy_holynova"),
+  "first-aid": iconUrl("spell_holy_holynova"),
 };

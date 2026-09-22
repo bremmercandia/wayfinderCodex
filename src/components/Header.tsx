@@ -2,12 +2,14 @@ import { Github, Globe, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { GameIcon } from "@/components/GameIcon";
 import { Badge } from "@/components/ui/badge";
 import { classes } from "@/data/classes";
 import { races } from "@/data/races";
 import { useBlizzardSource } from "@/hooks/use-blizzard-source";
 import { useCharacter } from "@/hooks/use-character";
 import { cn } from "@/lib/utils";
+import { factionIcons } from "@/lib/game-icons";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
@@ -73,6 +75,12 @@ export const Header = () => {
           {isConfigured && faction ? (
             <div className="flex flex-wrap items-center gap-1.5">
               <Badge variant={faction === "alliance" ? "alliance" : "horde"}>
+                <GameIcon
+                  src={factionIcons[faction]}
+                  alt={faction === "alliance" ? t("common.alliance") : t("common.horde")}
+                  fallback={faction.slice(0, 1)}
+                  className="size-3.5"
+                />
                 {faction === "alliance" ? t("common.alliance") : t("common.horde")}
               </Badge>
               <Badge variant="neutral">{race?.name}</Badge>
