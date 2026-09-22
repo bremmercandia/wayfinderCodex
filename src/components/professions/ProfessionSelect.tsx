@@ -1,7 +1,10 @@
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ProfessionCard } from "@/components/professions/ProfessionCard";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { professions } from "@/data/professions";
 import { useCharacter } from "@/hooks/use-character";
 import {
@@ -15,6 +18,7 @@ import {
 /** Picker that enforces the Classic rule: 2 primary + 3 secondary professions. */
 export const ProfessionSelect = () => {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(true);
   const { professions: selection, toggleProfession } = useCharacter();
 
   const selectedIds = [...selection.primary, ...selection.secondary];
@@ -26,10 +30,20 @@ export const ProfessionSelect = () => {
   ).length;
 
   return (
-    <Card variant="ornate" className="animate-fade-up">
+    <Collapsible open={open} onOpenChange={setOpen} asChild>
+      <Card variant="ornate" className="animate-fade-up">
       <CardHeader className="gap-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <CardTitle className="gold-text">{t("professions.select.title")}</CardTitle>
+          <CollapsibleTrigger asChild>
+            <button
+              type="button"
+              className="group flex min-w-0 items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label={t("professions.select.title")}
+            >
+              <CardTitle className="gold-text">{t("professions.select.title")}</CardTitle>
+              <ChevronDown className="size-4 shrink-0 text-primary transition-transform group-data-[state=open]:rotate-180" />
+            </button>
+          </CollapsibleTrigger>
           <Badge variant="gold">
             {countSelectedProfessions(selection)}/{MAX_PRIMARY_PROFESSIONS + MAX_SECONDARY_PROFESSIONS}
           </Badge>
@@ -37,7 +51,8 @@ export const ProfessionSelect = () => {
         <CardDescription>{t("professions.select.subtitle")}</CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-5">
+      <CollapsibleContent>
+        <CardContent className="space-y-5">
         <p className="parchment-panel text-xs">{t("professions.select.hint")}</p>
 
         <section className="space-y-3">
@@ -97,7 +112,9 @@ export const ProfessionSelect = () => {
             ))}
           </div>
         </section>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </CollapsibleContent>
+      </Card>
+    </Collapsible>
   );
 };

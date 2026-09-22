@@ -1,3 +1,4 @@
+import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -5,7 +6,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { fallbackLng, languageOptions, normalizeLanguage } from "@/i18n/config";
@@ -15,7 +15,7 @@ type LanguageSwitcherProps = {
 };
 
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const currentLanguage =
     normalizeLanguage(i18n.resolvedLanguage ?? i18n.language) ?? fallbackLng;
@@ -27,8 +27,12 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
         void i18n.changeLanguage(language);
       }}
     >
-      <SelectTrigger className={cn("min-w-[132px] whitespace-nowrap text-xs xl:min-w-[140px]", className)}>
-        <SelectValue />
+      <SelectTrigger
+        aria-label={t("nav.language")}
+        title={t("nav.language")}
+        className={cn("size-10 shrink-0 p-0", className)}
+      >
+        <Globe className="size-4" aria-hidden="true" />
       </SelectTrigger>
       <SelectContent>
         {languageOptions.map((language) => (

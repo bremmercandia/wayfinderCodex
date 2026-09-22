@@ -1,6 +1,9 @@
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DungeonCard } from "@/components/leveling/DungeonCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { getDungeonQuests } from "@/lib/leveling";
 import type { Dungeon, FactionId } from "@/types/game";
 
@@ -21,20 +24,32 @@ export const DungeonList = ({
   onSelect,
 }: DungeonListProps) => {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(true);
 
   const questCountFor = (dungeon: Dungeon) =>
     getDungeonQuests(dungeon.id, faction).length;
 
   return (
-    <section className="space-y-4">
-      <div>
-        <h2 className="font-display text-xl font-bold tracking-wide text-parchment">
-          {t("leveling.dungeons.title")}
-        </h2>
-        <p className="text-sm text-muted-foreground">{t("leveling.dungeons.subtitle")}</p>
-      </div>
+    <Collapsible open={open} onOpenChange={setOpen} asChild>
+      <section className="space-y-4">
+        <CollapsibleTrigger asChild>
+          <button
+            type="button"
+            className="group flex w-full items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={t("leveling.dungeons.title")}
+          >
+            <span>
+              <h2 className="font-display text-xl font-bold tracking-wide text-parchment">
+                {t("leveling.dungeons.title")}
+              </h2>
+              <p className="text-sm text-muted-foreground">{t("leveling.dungeons.subtitle")}</p>
+            </span>
+            <ChevronDown className="size-5 shrink-0 text-primary transition-transform group-data-[state=open]:rotate-180" />
+          </button>
+        </CollapsibleTrigger>
 
-      {dungeons.length === 0 ? (
+        <CollapsibleContent className="space-y-4">
+        {dungeons.length === 0 ? (
         <Card variant="panel">
           <CardContent className="pt-5 text-sm text-muted-foreground">
             {t("leveling.dungeons.empty")}
@@ -81,7 +96,9 @@ export const DungeonList = ({
             ))}
           </CardContent>
         </Card>
-      ) : null}
-    </section>
+        ) : null}
+        </CollapsibleContent>
+      </section>
+    </Collapsible>
   );
 };
