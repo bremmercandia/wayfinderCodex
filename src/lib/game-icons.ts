@@ -38,7 +38,7 @@ export const professionIcons: Record<string, string> = {
   herbalism: iconUrl("spell_nature_naturetouchgrow"),
   leatherworking: iconUrl("trade_leatherworking"),
   mining: iconUrl("trade_mining"),
-  skinning: iconUrl("trade_skinning"),
+  skinning: iconUrl("inv_misc_pelt_bear_03"),
   tailoring: iconUrl("trade_tailoring"),
   cooking: iconUrl("inv_misc_food_15"),
   fishing: iconUrl("trade_fishing"),
