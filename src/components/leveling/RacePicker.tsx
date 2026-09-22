@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { GameIcon } from "@/components/GameIcon";
 import { races } from "@/data/races";
 import { cn } from "@/lib/utils";
+import { raceIcons } from "@/lib/game-icons";
 import type { FactionId } from "@/types/game";
 
 interface RacePickerProps {
@@ -39,16 +41,17 @@ export const RacePicker = ({ faction, value, onChange }: RacePickerProps) => {
                 : "border-border/70 bg-secondary/40 text-foreground hover:border-primary/40 hover:bg-secondary/70",
             )}
           >
-            <span
+            <GameIcon
+              src={raceIcons[race.id]}
+              alt={race.name}
+              fallback={race.name.slice(0, 2)}
               className={cn(
                 "flex size-7 shrink-0 items-center justify-center rounded-sm border font-display text-[11px] font-bold uppercase",
                 race.faction === "alliance"
                   ? "border-faction-alliance/50 bg-faction-alliance/15 text-faction-alliance"
                   : "border-faction-horde/50 bg-faction-horde/15 text-faction-horde",
               )}
-            >
-              {race.name.slice(0, 2)}
-            </span>
+            />
             <span className="truncate">{race.name}</span>
           </button>
         );

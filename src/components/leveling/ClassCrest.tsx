@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { classIcons } from "@/lib/game-icons";
+import { GameIcon } from "@/components/GameIcon";
 import type { WowClassId } from "@/types/game";
 
 /**
@@ -35,6 +37,11 @@ export const ClassCrest = ({ classId, label, selected, className }: ClassCrestPr
       className,
     )}
   >
-    {label}
+    <GameIcon
+      src={classIcons[classId]}
+      alt={label}
+      fallback={label}
+      className="size-full"
+    />
   </span>
 );

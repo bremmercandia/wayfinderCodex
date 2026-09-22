@@ -1,6 +1,7 @@
-import { ShieldHalf, Swords } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { GameIcon } from "@/components/GameIcon";
 import { cn } from "@/lib/utils";
+import { factionIcons } from "@/lib/game-icons";
 import type { FactionId } from "@/types/game";
 
 interface FactionPickerProps {
@@ -30,8 +31,6 @@ export const FactionPicker = ({ value, onChange }: FactionPickerProps) => {
     <div className="grid grid-cols-2 gap-3">
       {OPTIONS.map((option) => {
         const selected = value === option.id;
-        const Icon = option.id === "alliance" ? ShieldHalf : Swords;
-
         return (
           <button
             key={option.id}
@@ -53,7 +52,12 @@ export const FactionPicker = ({ value, onChange }: FactionPickerProps) => {
                   : cn("border-border/70 bg-background/60", option.text),
               )}
             >
-              <Icon className="size-5" />
+              <GameIcon
+                src={factionIcons[option.id]}
+                alt={option.id === "alliance" ? t("common.alliance") : t("common.horde")}
+                fallback={option.id.slice(0, 1)}
+                className="size-8"
+              />
             </span>
             <span className="flex flex-col">
               <span

@@ -22,6 +22,8 @@
   "common.requiredLevel": "Minimum level",
   "common.clear": "Clear",
   "common.footer": "WayfinderCodex · fan guide for WoW Classic / Vanilla · curated data with Wowhead links",
+  "common.footerDisclaimer": "Fan project, not affiliated with Blizzard Entertainment.",
+  "common.repository": "View source on GitHub",
   "nav.leveling": "Leveling & Dungeons",
   "nav.professions": "Professions",
   "nav.language": "Language",

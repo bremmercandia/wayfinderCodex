@@ -4,6 +4,8 @@ WayfinderCodex is a fan-made leveling guide for **WoW Classic / Vanilla ("WoW Fo
 
 > Fan project, unaffiliated with Blizzard Entertainment. World of Warcraft, WoW Classic, and related names and items are trademarks of Blizzard.
 
+The original source code in this repository is available under the [MIT License](LICENSE). Third-party names, trademarks, game content, external services, and dependencies remain owned by their respective rights holders and are not relicensed by this project.
+
 ## Features
 
 ### Main section: `/` (Leveling and Dungeons)
@@ -124,6 +126,12 @@ The data in `src/data/` is curated rather than fetched from an API. It covers Cl
 - Recipes and skill ranges follow classic leveling paths; private-server variations may require data adjustments.
 
 Contributions are welcome through pull requests to files under `src/data/`.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the Pull Request workflow, validation commands, security rules, and third-party content guidelines.
+
+## Copyright and Third-Party Content
+
+This repository contains original application code and curated factual guide data. It does not include Blizzard game assets, extracted game files, proprietary API credentials, or copied third-party articles. The site links to Wowhead and loads its public tooltip widget and icon CDN at runtime; those services and their content remain subject to their own terms and rights. External fonts are loaded from Google Fonts. Review any future asset or data addition for permission and attribution before committing it.
 
 ## Verification
 

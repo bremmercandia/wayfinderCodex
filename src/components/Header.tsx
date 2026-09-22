@@ -1,4 +1,4 @@
-import { Compass, Globe, UserRound } from "lucide-react";
+import { Github, Globe, UserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
-    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+    "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium transition-colors",
     isActive
       ? "bg-primary/15 text-primary shadow-glow"
       : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground",
@@ -27,28 +27,40 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-40 border-b border-primary/20 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center justify-between gap-3">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-2">
+        <div className="flex min-w-0 items-center justify-between gap-3">
           <NavLink to="/" className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-md border border-primary/40 bg-gradient-leather shadow-ornate">
-              <Compass className="size-5 text-primary" />
-            </span>
+            <img
+              src={`${import.meta.env.BASE_URL}favicon.svg`}
+              alt=""
+              className="size-10 rounded-md border border-primary/40 shadow-ornate"
+            />
             <span className="flex flex-col leading-none">
               <span className="font-display text-lg font-bold tracking-wide text-parchment">
                 {t("common.appName")}
               </span>
-              <span className="hidden text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:block">
+              <span className="hidden whitespace-nowrap text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:block lg:max-xl:hidden">
                 {t("common.appTagline")}
               </span>
             </span>
           </NavLink>
 
           <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href="https://github.com/bremmercandia/wayfinderCodex"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={t("common.repository")}
+              title={t("common.repository")}
+              className="inline-flex size-10 items-center justify-center rounded-md border border-border/70 bg-background/60 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <Github className="size-4" aria-hidden="true" />
+            </a>
             <LanguageSwitcher />
           </div>
         </div>
 
-        <nav className="flex items-center gap-2" aria-label={t("common.appName")}>
+        <nav className="flex shrink-0 items-center gap-1" aria-label={t("common.appName")}>
           <NavLink to="/" end className={navLinkClass}>
             {t("nav.leveling")}
           </NavLink>
@@ -57,7 +69,7 @@ export const Header = () => {
           </NavLink>
         </nav>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex shrink-0 flex-wrap items-center gap-2 lg:flex-nowrap">
           {isConfigured && faction ? (
             <div className="flex flex-wrap items-center gap-1.5">
               <Badge variant={faction === "alliance" ? "alliance" : "horde"}>
@@ -76,10 +88,21 @@ export const Header = () => {
             </Badge>
           )}
 
-          <Badge variant="neutral" className="hidden gap-1.5 sm:inline-flex">
+          <Badge variant="neutral" className="hidden gap-1.5 xl:inline-flex">
             <Globe className="size-3.5" />
             {source === "live" ? t("header.dataLive") : t("header.dataCurated")}
           </Badge>
+
+          <a
+            href="https://github.com/bremmercandia/wayfinderCodex"
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={t("common.repository")}
+            title={t("common.repository")}
+            className="hidden size-10 items-center justify-center rounded-md border border-border/70 bg-background/60 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:inline-flex"
+          >
+            <Github className="size-4" aria-hidden="true" />
+          </a>
 
           <div className="hidden lg:block">
             <LanguageSwitcher />

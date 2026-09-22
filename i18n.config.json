@@ -4,7 +4,7 @@
   "languages": [
     {
       "code": "pt-BR",
-      "label": "Portuguese (Brazil)",
+      "label": "Português (Brasil)",
       "detect": ["pt", "pt-BR", "pt-PT"],
       "dir": "ltr"
     },

@@ -27,7 +27,7 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
         void i18n.changeLanguage(language);
       }}
     >
-      <SelectTrigger className={cn("min-w-[140px]", className)}>
+      <SelectTrigger className={cn("min-w-[132px] whitespace-nowrap text-xs xl:min-w-[140px]", className)}>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

@@ -1,4 +1,5 @@
 import { Check, Hammer, Leaf, Lock } from "lucide-react";
+import { GameIcon } from "@/components/GameIcon";
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { useLang } from "@/hooks/use-lang";
 import { localize } from "@/lib/localize";
 import { getPairSuggestions, type SelectionBlock } from "@/lib/professions";
 import { cn } from "@/lib/utils";
+import { professionIcons } from "@/lib/game-icons";
 import type { Profession } from "@/types/game";
 
 interface ProfessionCardProps {
@@ -66,7 +68,16 @@ export const ProfessionCard = ({
                     : "border-border/70 bg-background/60 text-muted-foreground",
                 )}
               >
-                <Icon className="size-4" />
+                {selected || blocked ? (
+                  <Icon className="size-4" />
+                ) : (
+                  <GameIcon
+                    src={professionIcons[profession.id]}
+                    alt={profession.name}
+                    fallback={profession.name.slice(0, 1)}
+                    className="size-6"
+                  />
+                )}
               </span>
               <span className="font-display text-sm font-semibold tracking-wide text-parchment">
                 {profession.name}
