@@ -3,8 +3,8 @@ const WOW_ICON_BASE = "https://wow.zamimg.com/images/wow/icons/large";
 const iconUrl = (name: string) => `${WOW_ICON_BASE}/${name}.jpg`;
 
 export const factionIcons = {
-  alliance: iconUrl("achievement_alliance"),
-  horde: iconUrl("achievement_horde"),
+  alliance: iconUrl("achievement_pvp_a_10"),
+  horde: iconUrl("achievement_pvp_h_10"),
 } as const;
 
 export const raceIcons: Record<string, string> = {
@@ -38,7 +38,7 @@ export const professionIcons: Record<string, string> = {
   herbalism: iconUrl("spell_nature_naturetouchgrow"),
   leatherworking: iconUrl("trade_leatherworking"),
   mining: iconUrl("trade_mining"),
-  skinning: iconUrl("inv_misc_pelt_wolf_03"),
+  skinning: iconUrl("trade_skinning"),
   tailoring: iconUrl("trade_tailoring"),
   cooking: iconUrl("inv_misc_food_15"),
   fishing: iconUrl("trade_fishing"),
